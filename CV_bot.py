@@ -119,7 +119,7 @@ def retrieve(query, db, top_k=3):
     return [text for _, text in scored[:top_k]]
 
 # ─── טעינת מידע ─────────────────────────────────────
-reader = PdfReader("me/linkedin.pdf")
+reader = PdfReader("linkedin.pdf")
 linkedin = ""
 for page in reader.pages:
     text = page.extract_text()
