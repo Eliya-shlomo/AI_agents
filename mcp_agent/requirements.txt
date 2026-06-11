@@ -1,0 +1,7 @@
+on:
+    push:
+        branch:
+           - main
+    pull request:
+        branch:
+            - main

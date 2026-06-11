@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Build') {
+            steps {
+                sh 'docker build -t payment-service:latest .'
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                sh 'pip install -r requirements.txt'
+                sh 'pytest test_app.py -v'
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                sh 'kubectl apply -f k8s/'
+            }
+        }
+    }
+    
+    post {
+        failure {
+            echo 'Pipeline failed!'
+        }
+    }
+}
